@@ -1,0 +1,69 @@
+@import "../../../../static/styles/_variables";
+
+.item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $navbarBorder;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  outline: none;
+
+  &:hover {
+    background: rgb(85, 85, 85);
+  }
+
+  &:before,
+  &:after {
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    &:before {
+      transform: rotate(0deg);
+      top: 0;
+      left: -23px;
+      opacity: 0;
+    }
+    &:after {
+      // opacity: 0;
+      transform: rotate(-90deg);
+      right: -3px;
+      bottom: -21px;
+      opacity: 0;
+    }
+  }
+}
+
+.item:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: $navbarColor;
+  border: 1px solid $navbarBorder;
+  transform: rotate(45deg);
+  position: absolute;
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  top: -11px;
+  left: -10px;
+}
+.item:after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: $navbarColor;
+  border: 1px solid $navbarBorder;
+  transform: rotate(-132deg);
+  position: absolute;
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  top: auto;
+  right: -10px;
+  bottom: -11px;
+}

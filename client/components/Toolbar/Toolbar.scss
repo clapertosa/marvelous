@@ -1,0 +1,35 @@
+@import "../../static/styles/_variables";
+
+.container {
+  display: none;
+  width: 100;
+  background-color: $navbarColor;
+  border-top: 1px solid $navbarBorder;
+  height: $toolbarHeight;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-flow: column;
+  color: white;
+  width: 70%;
+  height: inherit;
+  margin: auto;
+}
+
+.container-mobile {
+  display: flex;
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+  .container {
+    display: flex;
+  }
+
+  .toolbar {
+    flex-flow: row;
+  }
+}

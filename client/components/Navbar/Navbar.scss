@@ -1,0 +1,43 @@
+@import "../../static/styles/_variables";
+
+.header {
+  height: $navbarHeight;
+  width: 100%;
+  background-color: $navbarColor;
+  color: white;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  height: inherit;
+  width: 100%;
+
+  & > div {
+    margin: 0 10px;
+  }
+}
+
+.desktop {
+  display: none;
+}
+
+.mobile {
+  display: flex;
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+  .desktop {
+    display: flex;
+  }
+
+  .nav {
+    width: 70%;
+  }
+
+  .mobile {
+    display: none;
+  }
+}

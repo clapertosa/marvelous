@@ -1,0 +1,20 @@
+@import "../../../static/styles/_variables";
+
+.item {
+  display: block;
+  margin: 20px auto;
+  padding: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  border-right: 1px solid $navbarBorder;
+  border-left: 1px solid $navbarBorder;
+  transition: color 1s;
+
+  &:hover {
+    color: red;
+  }
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+}

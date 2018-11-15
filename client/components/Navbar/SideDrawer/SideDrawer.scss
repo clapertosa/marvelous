@@ -1,0 +1,26 @@
+@import "../../../static/styles/_variables";
+
+.container {
+  background-color: $navbarColor;
+  position: fixed;
+  height: 100vh;
+  width: 70%;
+  top: $navbarHeight;
+  left: 0;
+  z-index: 90;
+  transition: all 0.3s;
+}
+
+.display {
+  transform: translateX(0);
+}
+
+.hide {
+  transform: translateX(-200%);
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+  .container {
+    display: none;
+  }
+}
