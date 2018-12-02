@@ -1,0 +1,47 @@
+.container {
+  margin: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.form-input {
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+  height: auto;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.grid-container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-template-areas: "label input";
+  grid-column-gap: 4px;
+}
+
+.label {
+  grid-area: label;
+}
+
+.input {
+  grid-area: input;
+}
+
+.open {
+  max-height: 200px;
+  overflow: visible;
+}
+.hide {
+  max-height: 0;
+}
