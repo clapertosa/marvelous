@@ -1,18 +1,27 @@
 .grid-container {
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1auto 1auto 1auto;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas: "header" "main" "footer";
 }
 
 .header {
+  * {
+    outline: none;
+  }
+  top: 0;
+  z-index: 90;
+  position: sticky;
   grid-area: header;
 }
 
 .main {
+  width: 100%;
   grid-area: main;
 }
 
 .footer {
   grid-area: footer;
+  z-index: 90;
 }
