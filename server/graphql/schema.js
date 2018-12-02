@@ -1,80 +1,59 @@
 const { buildSchema } = require("graphql");
 
 module.exports = buildSchema(`
-  # Post
-  type Post {
-    id: ID!
-    user_id: ID!
-    content: String!
-    created_at: String!
-    updated_at: String!
-  }
-
-  # Picture
-  type Picture {
-    id: ID!
-    album_id: ID!
-    path: String!
-    created_at: String!
-    updated_at: String!
-  }
-
-  # Album
-  type Album {
-    id: ID!
-    user_id: ID!
-    title: String!
-    pictures: [Picture!]
-    created_at: String!
-    updated_at: String!
-  }
-
-  # Profile
-  type Profile {
-    id: ID!
-    user_id: ID!
-    sex: String!
-    birthDate: String!
-    avatar: String!
-    albums: [Album!]
-    posts: [Post!]
-  }
-
   # User
   type User {
     id: ID!
     name: String!
-    surname: String!
     email: String!
     password: String!
+    avatar: String!
     activated: Boolean!
     resetToken: String!
     resetTokenExpiration: String!
-    profile: Profile!
     created_at: String!
     updated_at: String!
   }
 
+  type CurrentUser {
+    userId: ID!
+    name: String!
+    email: String!
+    avatar: String
+    activated: Boolean!
+    created_at: String!
+  }
+
+  type AuthData {
+    userId: String!
+  }
+
   input UserInputData {
     name: String!
-    surname: String!
     email: String!
-    sex: String!
-    dobDay: Int!
-    dobMonth: Int!
-    dobYear: Int!
     password: String!
+    passwordConfirm: String!
+    avatar: String
   }
 
   # Configuration
   # Root Query
   type RootQuery {
-    create: String
+    currentUser: CurrentUser
   }
 
   # Root Mutation
   type RootMutation {
     createUser(userInput: UserInputData!): User!
+    login(email: String! password: String!): AuthData!
+    logout: String
+    changeAvatar(avatar: String!): String!
+    changeName(name: String!): String!
+    changeEmail(email: String! emailConfirm: String): String!
+    changePassword(oldPassword: String! password: String! passwordConfirm: String!): String!,
+    activateUser(token: String!): Boolean!,
+    resetPassword(email: String!): Boolean!,
+    newPassword(token: String! password: String! passwordConfirm: String!): Boolean!
   }
 
   # Schema Config
