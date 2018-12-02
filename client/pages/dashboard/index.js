@@ -1,0 +1,35 @@
+import User from "../../hoc/User/User";
+import AvatarForm from "../../components/Dashboard/Form/AvatarForm/AvatarForm";
+import Form from "../../components/Dashboard/Form/Form";
+import styles from "./index.scss";
+
+const Dashboard = () => {
+  return (
+    <div className={styles.wrapper}>
+      <User>
+        {({ data: { currentUser }, error, loading }) => (
+          <div className={styles["grid-container"]}>
+            <div className={styles["form-container"]}>
+              <div className={styles["avatar"]}>
+                <AvatarForm />
+              </div>
+              <div>
+                <div className={styles["name"]}>
+                  <Form name initialName={currentUser.name} />
+                </div>
+                <div className={styles["email"]}>
+                  <Form email initialEmail={currentUser.email} />
+                </div>
+                <div className={styles["password"]}>
+                  <Form password />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </User>
+    </div>
+  );
+};
+
+export default Dashboard;
