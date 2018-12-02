@@ -1,0 +1,26 @@
+@import "../../static/styles/_variables";
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 4rem;
+  background-color: $navbarColor;
+}
+
+.attribution {
+  font-family: "Marvel-Bold";
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 1.4rem;
+
+  a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: red;
+    }
+  }
+}

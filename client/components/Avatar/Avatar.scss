@@ -1,0 +1,57 @@
+.container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  overflow: hidden;
+  height: 250px;
+  width: 250px;
+}
+
+.avatar {
+  max-width: 100%;
+}
+
+.caption {
+  position: absolute;
+  color: white;
+  text-shadow: 3px 3px 3px black;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  opacity: 0;
+}
+
+.navbar {
+  margin-top: 0;
+  max-width: 3rem;
+  max-height: 3rem;
+}
+
+.dashboard {
+  cursor: pointer;
+  max-width: 300px;
+  max-height: 300px;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: gray;
+
+    img {
+      filter: grayscale(100%) blur(3px) brightness(50%);
+    }
+
+    &:after {
+      content: "Upload a new Avatar";
+      filter: none !important;
+      position: absolute;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-align: center;
+      text-shadow: 3px 3px 3px black;
+    }
+  }
+}
