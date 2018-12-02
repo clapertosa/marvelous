@@ -1,0 +1,36 @@
+.wrapper {
+  height: 100%;
+  background-image: url("../static/backgrounds/6.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas: "banner" "characters" "comics" "events";
+  grid-row-gap: 10px;
+}
+
+.banner {
+  grid-area: banner;
+}
+
+.characters {
+  grid-area: characters;
+  display: flex;
+  justify-content: center;
+}
+
+.comics {
+  grid-area: comics;
+  display: flex;
+  justify-content: center;
+}
+
+.events {
+  grid-area: events;
+  display: flex;
+  justify-content: center;
+}

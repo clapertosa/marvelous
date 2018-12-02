@@ -1,0 +1,31 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "image" "caption";
+}
+
+.image-container {
+  grid-area: image;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "main main main" "sub-main sub-main sub-main";
+  grid-area: caption;
+}
+
+.main {
+  grid-area: main;
+}
+
+.sub-main {
+  grid-area: sub-main;
+}

@@ -17,4 +17,7 @@
 }
 
 @media (min-width: $mediaQueryMinWidth) {
+  .item {
+    margin: 20px;
+  }
 }

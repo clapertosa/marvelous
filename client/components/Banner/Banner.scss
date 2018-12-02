@@ -1,0 +1,14 @@
+@import "../../static/styles/_variables";
+
+.container {
+  position: relative;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 95%;
+  overflow: hidden;
+  z-index: 70;
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+}
