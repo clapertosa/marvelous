@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const util = require("util");
 const keys = require("../config/keys");
+const axios = require("../axiosInstance");
 
 module.exports = {
   createUser: async ({ userInput }, { req }) => {
@@ -412,7 +413,6 @@ module.exports = {
     const user = await knex("users")
       .select("id", "resetTokenExpiration")
       .where({ resetToken: token });
-    console.log(user);
     if (!user[0]) {
       throw new Error("Wrong token");
     }
@@ -453,5 +453,54 @@ module.exports = {
       });
 
     return true;
+  },
+  comics: async (args, { req }) => {
+    const lastWeek = await axios.get("/comics", {
+      params: {
+        format: "comic",
+        formatType: "comic",
+        noVariants: true,
+        dateDescriptor: "lastWeek",
+        limit: 10
+      }
+    });
+
+    const thisMonth = await axios.get("/comics", {
+      params: {
+        format: "comic",
+        formatType: "comic",
+        noVariants: true,
+        dateDescriptor: "thisMonth",
+        limit: 10
+      }
+    });
+
+    return {
+      thisMonth: thisMonth.data.data.results,
+      lastWeek: lastWeek.data.data.results
+    };
+  },
+  comic: async ({ id }, { req }) => {
+    const res = await axios.get(`/comics/${id}`);
+    let charactersURI = res.data.data.results[0].characters.collectionURI;
+    charactersURI = charactersURI.substring(
+      charactersURI.indexOf("public") + 6,
+      charactersURI.length
+    );
+    const characters = await axios.get(charactersURI);
+    res.data.data.results[0].characters = characters.data.data.results;
+    return res.data.data.results[0];
+  },
+  characters: async (args, { req }) => {},
+  character: async ({ id }, { req }) => {
+    const res = await axios.get(`/characters/${id}`);
+    let comicsURI = res.data.data.results[0].comics.collectionURI;
+    comicsURI = comicsURI.substring(
+      comicsURI.indexOf("public") + 6,
+      comicsURI.length
+    );
+    const comics = await axios.get(comicsURI);
+    res.data.data.results[0].comics = comics.data.data.results;
+    return res.data.data.results[0];
   }
 };

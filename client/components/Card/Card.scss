@@ -3,10 +3,29 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: "image" "caption";
+  transition: transform 0.3s ease-out;
+
+  &:hover {
+    .caption {
+      color: red;
+      transition: color 0.8s;
+    }
+    overflow: hidden;
+    transform: scale(1.2);
+  }
+
+  a {
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+  }
 }
 
 .image-container {
   grid-area: image;
+  max-width: 150px;
 
   img {
     width: 100%;
@@ -20,6 +39,10 @@
   grid-template-rows: 1fr 1fr;
   grid-template-areas: "main main main" "sub-main sub-main sub-main";
   grid-area: caption;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Marvel-bold";
+  width: 100%;
 }
 
 .main {

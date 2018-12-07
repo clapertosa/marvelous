@@ -1,14 +1,29 @@
+@import "../../../static/styles/_variables";
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   img {
     animation: rotate 1.5s linear infinite;
   }
 }
 
+.centered {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 4rem);
+}
+
 @keyframes rotate {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+  .centered {
+    height: calc(100% - 7rem);
   }
 }

@@ -1,7 +1,33 @@
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 import Banner from "../components/Banner/Banner";
 import WideCardsContainer from "../components/WideCardsContainer/WideCardsContainer";
 import Card from "../components/Card/Card";
+import Spinner from "../components/UI/Spinner/Spinner";
 import styles from "./index.scss";
+
+const COMICS_QUERY = gql`
+  query COMICS_QUERY {
+    comics {
+      lastWeek {
+        id
+        title
+        thumbnail {
+          path
+          extension
+        }
+      }
+      thisMonth {
+        id
+        title
+        thumbnail {
+          path
+          extension
+        }
+      }
+    }
+  }
+`;
 
 const Home = () => {
   return (
@@ -10,36 +36,57 @@ const Home = () => {
         <div className={styles.banner}>
           <Banner />
         </div>
-        <div className={styles.characters}>
-          <WideCardsContainer title="Incoming Comics">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </WideCardsContainer>
-        </div>
-        <div className={styles.comics}>
-          <WideCardsContainer title="This Week Comics">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </WideCardsContainer>
-        </div>
-        <div className={styles.events}>
-          <WideCardsContainer title="This Month Comics">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </WideCardsContainer>
-        </div>
+        <Query query={COMICS_QUERY}>
+          {({ data: { comics }, error, loading }) => {
+            if (!comics || loading) return <Spinner />;
+            return (
+              <>
+                <div className={styles["last-week"]}>
+                  <WideCardsContainer
+                    title="Last Week"
+                    autoplay={{ delay: 4000 }}
+                    cardsNumber={comics.lastWeek.length}
+                    slidesPerView={5}
+                    allowTouchMove
+                    loop
+                  >
+                    {comics.lastWeek.map(comic => (
+                      <Card
+                        key={comic.title}
+                        url="comic"
+                        id={comic.id}
+                        title={comic.title}
+                        image={comic.thumbnail.path}
+                        imageExtension={comic.thumbnail.extension}
+                      />
+                    ))}
+                  </WideCardsContainer>
+                </div>
+                <div className={styles["this-month"]}>
+                  <WideCardsContainer
+                    title="This Month"
+                    autoplay={{ delay: 4000 }}
+                    cardsNumber={comics.thisMonth.length}
+                    slidesPerView={5}
+                    allowTouchMove
+                    loop
+                  >
+                    {comics.thisMonth.map(comic => (
+                      <Card
+                        key={comic.title}
+                        url="comic"
+                        id={comic.id}
+                        title={comic.title}
+                        image={comic.thumbnail.path}
+                        imageExtension={comic.thumbnail.extension}
+                      />
+                    ))}
+                  </WideCardsContainer>
+                </div>
+              </>
+            );
+          }}
+        </Query>
       </div>
     </div>
   );

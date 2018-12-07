@@ -1,0 +1,49 @@
+@import "../../../static/styles/_variables";
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  grid-template-areas: "name" "description";
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  color: white;
+  padding: 10px;
+
+  h2 {
+    color: red;
+  }
+
+  span {
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  div {
+    text-align: center;
+  }
+}
+
+.name {
+  grid-area: name;
+  color: red;
+  text-align: center;
+}
+
+.description {
+  grid-area: description;
+}
+
+@media (min-width: $mediaQueryMinWidth + 15) {
+  .grid-container {
+    color: white;
+
+    div {
+      text-align: left;
+    }
+  }
+
+  .name {
+    text-align: left;
+  }
+}

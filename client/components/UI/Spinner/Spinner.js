@@ -5,11 +5,14 @@ const Spinner = ({
   containerWidth,
   containerHeight,
   spinnerWidth,
-  spinnerHeight
+  spinnerHeight,
+  centered
 }) => {
   return (
     <div
-      className={styles.container}
+      className={[styles.container, centered ? styles.centered : null].join(
+        " "
+      )}
       style={{
         minWidth: containerWidth || "auto",
         minHeight: containerHeight || "auto"

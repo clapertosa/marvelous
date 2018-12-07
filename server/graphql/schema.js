@@ -36,10 +36,74 @@ module.exports = buildSchema(`
     avatar: String
   }
 
+  # API generic types
+    type Url {
+    type: String!
+    url: String!
+  }
+
+  type Date {
+    type: String!
+    date: String!
+  }
+
+  type Price {
+    type: String!
+    price: Float!
+  }
+
+  type Image {
+    path: String!
+    extension: String!
+  }
+
+  # Comic
+  type ComicCreator {
+    items: [ComicCreatorItem]
+  }
+
+  type ComicCreatorItem {
+    name: String!
+    role: String!
+  }
+
+  type Comic {
+    id: ID!
+    title: String!
+    description: String
+    pageCount: Int
+    creators: ComicCreator
+    urls: [Url]
+    dates: [Date]
+    prices: [Price]
+    thumbnail: Image
+    images: [Image]
+    characters: [Character]
+  }
+
+  type Comics {
+    lastWeek: [Comic!]
+    thisMonth: [Comic!]
+  }
+
+  # Characters
+  type Character {
+    id: ID!
+    name: String!
+    description: String
+    thumbnail: Image
+    comics: [Comic]
+  }
+
   # Configuration
   # Root Query
   type RootQuery {
     currentUser: CurrentUser
+    comics: Comics!
+    # TODO RICORDATI DI MODIFICARE QUIIIIIIIIIIIIIII
+    comic(id: ID!): Comic
+    characters: [Character]
+    character(id: ID!): Character
   }
 
   # Root Mutation

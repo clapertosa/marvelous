@@ -1,0 +1,136 @@
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import Cover from "../../components/Comic/Cover/Cover";
+import Info from "../../components/Comic/Info/Info";
+import WideCardsContainer from "../../components/WideCardsContainer/WideCardsContainer";
+import Card from "../../components/Card/Card";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import styles from "./index.scss";
+
+const COMIC_QUERY = gql`
+  query COMIC_QUERY($id: ID!) {
+    comic(id: $id) {
+      title
+      description
+      urls {
+        url
+      }
+      creators {
+        items {
+          name
+          role
+        }
+      }
+      dates {
+        type
+        date
+      }
+      prices {
+        type
+        price
+      }
+      thumbnail {
+        path
+        extension
+      }
+      characters {
+        id
+        name
+        thumbnail {
+          path
+          extension
+        }
+      }
+    }
+  }
+`;
+
+const Comic = props => {
+  return (
+    <Query query={COMIC_QUERY} variables={{ id: props.id }}>
+      {({ data: { comic }, error, loading }) => {
+        if (loading)
+          return <Spinner centered spinnerWidth={300} spinnerHeight={300} />;
+        const release = comic.dates.filter(
+          date => date.type === "onsaleDate"
+        )[0];
+        const price = comic.prices.filter(
+          price => price.type === "printPrice"
+        )[0];
+        const writer = comic.creators.items.filter(
+          creator => creator.role === "writer"
+        )[0];
+        const coverArtist = comic.creators.items.filter(
+          creator =>
+            creator.role === "penciller (cover)" ||
+            creator.role === "painter (cover)" ||
+            creator.role === "inker (cover)" ||
+            creator.role === "inker"
+        )[0];
+        return (
+          <div className={styles.wrapper}>
+            <div
+              className={styles["background-image-container"]}
+              style={{
+                backgroundImage: `url('${comic.thumbnail.path}/background.${
+                  comic.thumbnail.extension
+                }')`
+              }}
+            />
+            <div className={styles["grid-container"]}>
+              <div className={styles.cover}>
+                <Cover
+                  image={`${comic.thumbnail.path}/clean.${
+                    comic.thumbnail.extension
+                  }`}
+                />
+              </div>
+              <div className={styles.info}>
+                <Info
+                  title={comic.title}
+                  release={release ? release.date : "TBA"}
+                  price={price ? price.price : null}
+                  writer={writer ? writer.name : null}
+                  coverArtist={
+                    coverArtist ? coverArtist.name : "The Universe 🌃"
+                  }
+                  description={comic.description}
+                />
+              </div>
+              <div className={styles.characters}>
+                <WideCardsContainer
+                  title="Characters"
+                  allowTouchMove
+                  loop
+                  autoplay={comic.characters.length > 5}
+                  slidesPerView={
+                    comic.characters.length > 5 ? 5 : comic.characters.length
+                  }
+                  cardsNumber={comic.characters.length}
+                >
+                  {comic.characters.map(character => (
+                    <Card
+                      key={character.id}
+                      url="character"
+                      id={character.id}
+                      title={character.name}
+                      image={character.thumbnail.path}
+                      imageExtension={character.thumbnail.extension}
+                    />
+                  ))}
+                </WideCardsContainer>
+              </div>
+              <div className={styles.comments} />
+            </div>
+          </div>
+        );
+      }}
+    </Query>
+  );
+};
+
+Comic.getInitialProps = ({ query }) => {
+  return { id: query.id };
+};
+
+export default Comic;

@@ -11,12 +11,12 @@ const Banner = () => {
   return (
     <div className={styles.container}>
       <Carousel
-        autoplay
-        pauseOnHover={false}
-        speed={1800}
-        transitionMode="fade"
-        infinite
-        withoutControls
+        autoplay={{ delay: 3000 }}
+        slidesPerView={1}
+        allowTouchMove={false}
+        disableOnInteraction={false}
+        loop
+        speed={300}
       >
         {banner.map((image, index) => (
           <img key={index} src={image} />

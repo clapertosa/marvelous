@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto auto auto auto;
-  grid-template-areas: "banner" "characters" "comics" "events";
+  grid-template-areas: "banner" "last-week" "this-month";
   grid-row-gap: 10px;
 }
 
@@ -17,20 +17,14 @@
   grid-area: banner;
 }
 
-.characters {
-  grid-area: characters;
+.last-week {
+  grid-area: last-week;
   display: flex;
   justify-content: center;
 }
 
-.comics {
-  grid-area: comics;
-  display: flex;
-  justify-content: center;
-}
-
-.events {
-  grid-area: events;
+.this-month {
+  grid-area: this-month;
   display: flex;
   justify-content: center;
 }
