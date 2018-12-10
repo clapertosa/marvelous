@@ -1,0 +1,24 @@
+@import "../../../../static/styles/_variables";
+
+.container {
+  margin: auto;
+  padding: 10px 0 10px 0;
+  font-family: "Marvel-bold";
+  font-weight: bold;
+  color: black;
+  max-height: 450px;
+  overflow: scroll;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+  .container {
+    max-height: 500px;
+    width: 80%;
+  }
+}

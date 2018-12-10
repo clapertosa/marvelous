@@ -24,24 +24,24 @@ i {
 }
 
 .closer {
+  color: black;
   display: block;
-  width: 70%;
+  width: 85%;
   margin: 10px auto 0 auto;
-
-  span {
-    background: rgba(128, 128, 128, 0.233);
-    border-radius: 100%;
-    padding: 5px 10px;
-    cursor: pointer;
-    color: black;
-  }
 }
 
 .search-container {
-  width: 100%;
+  margin: auto;
+  padding: 10px;
+  display: block;
+  background-color: white;
   position: absolute;
-  top: $navbarHeight;
+  box-shadow: 3px 3px 3px black;
+  border-radius: 20px;
+  width: 85%;
+  top: calc(#{$navbarHeight} + 10px);
   left: 0;
+  right: 0;
   transition: all 0.3s;
 
   input {
@@ -49,21 +49,31 @@ i {
     margin: 20px auto;
     border: none;
     border-bottom: 1px solid black;
-    width: 70%;
+    width: 80%;
   }
 }
 
 .category {
   margin: auto;
-  width: 70%;
+  width: 80%;
+  color: black;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 
+  label {
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  input {
+    display: none;
+  }
+
   .category-type {
+    margin-right: 10px;
     cursor: pointer;
     color: black;
-    margin: auto 10px;
     text-decoration: none;
     transition: color 0.2s;
 
@@ -75,6 +85,7 @@ i {
 
 @media (min-width: $mediaQueryMinWidth) {
   .search-container {
-    top: 7rem;
+    top: calc(#{$navbarHeight + 3rem} + 10px);
+    width: 70%;
   }
 }

@@ -62,8 +62,9 @@ const Comic = props => {
         )[0];
         const coverArtist = comic.creators.items.filter(
           creator =>
-            creator.role === "penciller (cover)" ||
+            creator.role === "penciler (cover)" ||
             creator.role === "painter (cover)" ||
+            creator.role === "colorist (cover)" ||
             creator.role === "inker (cover)" ||
             creator.role === "inker"
         )[0];
@@ -90,7 +91,7 @@ const Comic = props => {
                   title={comic.title}
                   release={release ? release.date : "TBA"}
                   price={price ? price.price : null}
-                  writer={writer ? writer.name : null}
+                  writer={writer ? writer.name : "Unknown"}
                   coverArtist={
                     coverArtist ? coverArtist.name : "The Universe 🌃"
                   }

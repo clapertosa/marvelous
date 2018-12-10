@@ -33,7 +33,7 @@ const WideCardsContainer = props => {
               slidesPerView: props.cardsNumber > 2 ? 3 : props.cardsNumber,
               spaceBetween: 30
             },
-            1020: {
+            1200: {
               slidesPerView: props.cardsNumber > 3 ? 4 : props.cardsNumber,
               spaceBetween: 40
             }
