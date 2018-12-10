@@ -1,9 +1,21 @@
 @import "../../../static/styles/_variables";
 
+.background {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  background-image: url("../../../static/backgrounds/2.jpg");
+  background-position: center;
+  background-size: cover;
+  filter: brightness(50%) blur(2px) grayscale(50%);
+  z-index: -900;
+}
+
 .container {
   background-color: $navbarColor;
   position: fixed;
-  height: 100vh;
+  height: calc(100% - #{$navbarHeight});
   width: 70%;
   top: $navbarHeight;
   left: 0;

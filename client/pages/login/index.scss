@@ -13,9 +13,3 @@
 .form {
   margin-top: 10px;
 }
-
-@media (min-width: $mediaQueryMinWidth) {
-  .wrapper {
-    height: calc(100% - 7rem);
-  }
-}

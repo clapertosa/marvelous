@@ -21,9 +21,3 @@
     transform: rotate(360deg);
   }
 }
-
-@media (min-width: $mediaQueryMinWidth) {
-  .centered {
-    height: calc(100% - 7rem);
-  }
-}

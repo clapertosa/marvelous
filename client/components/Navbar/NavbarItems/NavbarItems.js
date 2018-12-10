@@ -15,7 +15,11 @@ const NavbarItems = props => {
                 <Avatar avatar={currentUser.avatar} navbar />
               </NavbarDropdownItem>
             );
-          return <NavbarDropdownItem>Sign In</NavbarDropdownItem>;
+          return (
+            <NavbarDropdownItem>
+              <i className="icon-user" />Sign In
+            </NavbarDropdownItem>
+          );
         }}
       </User>
       {props.sideDrawer ? null : <Logo />}

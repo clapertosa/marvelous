@@ -6,12 +6,13 @@
   transition: transform 0.3s ease-out;
 
   &:hover {
+    overflow: hidden;
+    transform: scale(1.1);
+    backface-visibility: hidden;
     .caption {
       color: red;
       transition: color 0.8s;
     }
-    overflow: hidden;
-    transform: scale(1.2);
   }
 
   a {

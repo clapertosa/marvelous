@@ -95,6 +95,7 @@ class Search extends Component {
             {client => (
               <form
                 method="POST"
+                onKeyDown={e => (e.keyCode === 13 ? e.preventDefault() : null)}
                 onChange={e => {
                   e.persist();
                   this.onChangeHandler(e, client);
@@ -103,6 +104,7 @@ class Search extends Component {
                 <input
                   type="text"
                   autoComplete="off"
+                  autoFocus={true}
                   name="query"
                   onChange={e => this.onChangeInput(e)}
                   placeholder="Search"
@@ -146,7 +148,17 @@ class Search extends Component {
             )}
           </ApolloConsumer>
           {this.state.loading ? <Spinner /> : null}
-          {!this.state.loading ? <Results data={this.state.results} /> : null}
+          {!this.state.loading &&
+          this.state.query.length > 0 &&
+          this.state.results !== undefined &&
+          this.state.results.length <= 0 ? (
+            <div className={styles["no-results"]}>No results found 😥</div>
+          ) : null}
+          {!this.state.loading &&
+          this.state.results !== undefined &&
+          this.state.results.length > 0 ? (
+            <Results data={this.state.results} />
+          ) : null}
         </div>
       </div>
     );

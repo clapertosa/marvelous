@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Router from "next/router";
 import DrawerToggle from "./SideDrawer/DrawerToggle/DrawerToggle";
 import NavbarItems from "./NavbarItems/NavbarItems";
 import SideDrawer from "./SideDrawer/SideDrawer";
@@ -8,8 +9,20 @@ import Logo from "./Logo/Logo";
 import Search from "./Search/Search";
 
 class Navbar extends Component {
+  componentDidMount() {
+    this.setState({ currentRoute: Router.route });
+  }
+
+  componentDidUpdate() {
+    if (this.state.currentRoute !== Router.route) {
+      this.closeSideDrawer();
+      this.setState({ currentRoute: Router.route });
+    }
+  }
+
   state = {
-    showSideDrawer: false
+    showSideDrawer: false,
+    currentRoute: undefined
   };
 
   showSideDrawerToggle = () => {
@@ -33,10 +46,13 @@ class Navbar extends Component {
           <Logo small />
           <Search />
         </nav>
-        <SideDrawer show={this.state.showSideDrawer} />
+        <SideDrawer
+          show={this.state.showSideDrawer}
+          closeSideDrawer={this.closeSideDrawer}
+        />
         <Backdrop
           show={this.state.showSideDrawer}
-          clicked={this.closeSideDrawer}
+          closeSideDrawer={this.closeSideDrawer}
         />
       </header>
     );

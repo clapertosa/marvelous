@@ -3,17 +3,13 @@
 .wrapper {
   position: absolute;
   width: 100%;
-  height: calc(100vh - 4rem);
+  height: calc(100% - 4rem);
   background-image: url("../../../static/backgrounds/2.jpg");
   background-position: top center;
   background-size: cover;
   background-attachment: fixed;
 }
 @media (min-width: $mediaQueryMinWidth) {
-  .wrapper {
-    height: calc(100vh - 7rem);
-  }
-
   .form-container {
     width: 400px;
   }

@@ -10,10 +10,6 @@
   background-attachment: fixed;
 }
 @media (min-width: $mediaQueryMinWidth) {
-  .wrapper {
-    height: calc(100vh - 7rem);
-  }
-
   .form-container {
     width: 400px;
   }
