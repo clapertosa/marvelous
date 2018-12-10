@@ -100,10 +100,10 @@ module.exports = buildSchema(`
   type RootQuery {
     currentUser: CurrentUser
     comics: Comics!
-    # TODO RICORDATI DI MODIFICARE QUIIIIIIIIIIIIIII
     comic(id: ID!): Comic
-    characters: [Character]
     character(id: ID!): Character
+    searchComic(query: String!): [Comic]
+    searchCharacter(query: String!): [Character]
   }
 
   # Root Mutation

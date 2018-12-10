@@ -491,7 +491,6 @@ module.exports = {
     res.data.data.results[0].characters = characters.data.data.results;
     return res.data.data.results[0];
   },
-  characters: async (args, { req }) => {},
   character: async ({ id }, { req }) => {
     const res = await axios.get(`/characters/${id}`);
     let comicsURI = res.data.data.results[0].comics.collectionURI;
@@ -502,5 +501,28 @@ module.exports = {
     const comics = await axios.get(comicsURI);
     res.data.data.results[0].comics = comics.data.data.results;
     return res.data.data.results[0];
+  },
+  searchComic: async ({ query }, { req }) => {
+    const res = await axios.get("/comics", {
+      params: {
+        format: "comic",
+        formatType: "comic",
+        titleStartsWith: query,
+        orderBy: "title",
+        noVariants: true,
+        limit: 12
+      }
+    });
+    return res.data.data.results;
+  },
+  searchCharacter: async ({ query }, { req }) => {
+    const res = await axios.get("/characters", {
+      params: {
+        nameStartsWith: query,
+        orderBy: "name",
+        limit: 12
+      }
+    });
+    return res.data.data.results;
   }
 };
