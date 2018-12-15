@@ -16,7 +16,10 @@ const PORT = process.env.PORT || 8080;
 // Cors configuration
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin:
+      process.env.NODE_ENV === "production"
+        ? process.env.CLIENT_URL
+        : "http://localhost:3000",
     credentials: true
   })
 );
@@ -34,11 +37,16 @@ app.use(helmet());
 // Express-Session and Connect-Redis configurations
 app.use(
   session({
-    store: new RedisStore({
-      host: "localhost",
-      port: 6379,
-      client
-    }),
+    store:
+      process.env.NODE_ENV === "production"
+        ? new RedisStore({
+            url: process.env.REDIS_URL
+          })
+        : new RedisStore({
+            host: "localhost",
+            port: 6379,
+            client
+          }),
     name: "qob",
     resave: false,
     saveUninitialized: false,
@@ -60,7 +68,7 @@ app.use("/graphql", (req, res) => {
   graphqlHTTP({
     schema: graphqlSchema,
     rootValue: graphqlResolver,
-    graphiql: true,
+    graphiql: process.env.NODE_ENV !== "production",
     context: { req, res },
     formatError: err => {
       if (!err.originalError) {

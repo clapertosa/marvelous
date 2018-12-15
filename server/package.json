@@ -4,7 +4,9 @@
   "description": "Server for Marvelous App",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js"
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [
     "marvel",

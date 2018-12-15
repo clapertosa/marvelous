@@ -134,10 +134,7 @@ class Comment extends Component {
       <div className={styles["grid-container"]}>
         <div className={styles.avatar}>
           <img
-            src={
-              this.props.user.avatar ||
-              "http://localhost:3000/static/images/defaultAvatar.png"
-            }
+            src={this.props.user.avatar || "/static/images/defaultAvatar.png"}
             alt={`${this.props.user.name}'s avatar`}
           />
         </div>
