@@ -1,12 +1,13 @@
 {
-  "name": "client",
+  "name": "marvelous-client",
   "version": "1.0.0",
   "description": "A Next app using Marvel API",
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "deploy": "now && now alias"
   },
   "keywords": [
     "marvel",
