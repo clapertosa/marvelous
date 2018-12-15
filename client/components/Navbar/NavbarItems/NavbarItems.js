@@ -11,13 +11,21 @@ const NavbarItems = props => {
         {({ data: { currentUser } }) => {
           if (currentUser)
             return (
-              <NavbarDropdownItem user={currentUser}>
-                <Avatar avatar={currentUser.avatar} navbar />
+              <NavbarDropdownItem
+                user={currentUser}
+                sideDrawer={props.sideDrawer}
+              >
+                <Avatar
+                  avatar={currentUser.avatar}
+                  navbar
+                  sideDrawer={props.sideDrawer}
+                />
               </NavbarDropdownItem>
             );
           return (
             <NavbarDropdownItem>
-              <i className="icon-user" />Sign In
+              <i className="icon-user" />
+              Sign In
             </NavbarDropdownItem>
           );
         }}

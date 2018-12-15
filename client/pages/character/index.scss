@@ -40,6 +40,8 @@
 
 .comments {
   grid-area: comments;
+  display: flex;
+  justify-content: center;
 }
 
 @media (min-width: $mediaQueryMinWidth + 15rem) {
@@ -48,13 +50,14 @@
   }
   .background-image-container {
     display: block;
-    height: calc(100% - 4rem);
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     filter: blur(1px) brightness(25%);
     transform: scale(1.1);
     width: 100%;
     position: fixed;
+    top: 0;
     overflow: hidden;
     z-index: -99;
 

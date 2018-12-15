@@ -19,6 +19,7 @@ const Spinner = ({
       }}
     >
       <img
+        id={styles["spinner-image"]}
         width={spinnerWidth || "60px"}
         height={spinnerHeight || "60px"}
         src="/static/images/spinner.svg"

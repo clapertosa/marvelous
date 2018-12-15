@@ -19,7 +19,10 @@ class NavbarDropdownItem extends Component {
 
   render() {
     return (
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        style={{ marginTop: this.props.sideDrawer ? "20px" : null }}
+      >
         <div
           className={styles.title}
           onClick={this.dropdownToggle}

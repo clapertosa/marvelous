@@ -1,3 +1,5 @@
+@import "../../static/styles/_variables";
+
 .container {
   margin: 10px;
   position: relative;
@@ -8,12 +10,12 @@
 
 .title {
   font-family: "Marvel-bold";
-  font-size: 1.5rem;
   color: red;
   text-shadow: 3px 3px 3px black;
   margin-bottom: 10px;
 
   h1 {
+    font-size: 2rem;
     margin: 0;
     padding: 0;
   }
@@ -29,4 +31,12 @@
   width: 100%;
   overflow: hidden;
   z-index: 70;
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+  .title {
+    h1 {
+      font-size: 3rem;
+    }
+  }
 }

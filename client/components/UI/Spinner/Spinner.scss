@@ -5,9 +5,10 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  img {
-    animation: rotate 1.5s linear infinite;
-  }
+}
+
+#spinner-image {
+  animation: rotate 1.5s linear infinite;
 }
 
 .centered {

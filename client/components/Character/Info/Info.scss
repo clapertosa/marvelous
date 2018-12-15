@@ -32,6 +32,8 @@
 
 .description {
   grid-area: description;
+  max-height: 400px;
+  overflow: auto;
 }
 
 @media (min-width: $mediaQueryMinWidth + 15) {

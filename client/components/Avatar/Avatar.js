@@ -5,7 +5,8 @@ const Avatar = props => {
     <div
       className={[
         styles.container,
-        props.navbar ? styles.navbar : styles.dashboard
+        props.navbar ? styles.navbar : styles.dashboard,
+        props.sideDrawer ? styles.sideDrawer : null
       ].join(" ")}
     >
       <img

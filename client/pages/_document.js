@@ -15,6 +15,8 @@ export default class MyDocument extends Document {
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
+          <meta property="og:title" content="Marvelous 🚀" />
+          <meta property="og:image" content="../static/backgrounds/2.jpg" />
           <link
             rel="shortcut icon"
             href="/static/favicon.ico"
