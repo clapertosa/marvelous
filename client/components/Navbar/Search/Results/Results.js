@@ -13,7 +13,7 @@ const Results = ({ data }) => {
               id={result.id}
               category={result.__typename}
               name={result.name || result.title}
-              image={result.thumbnail.path}
+              image={result.thumbnail.path.replace("http://", "https://")}
               imageExtension={result.thumbnail.extension}
             />
           );

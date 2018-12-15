@@ -26,9 +26,9 @@ app
       return handle(req, res);
     });
 
-    server.listen(process.env.PORT || 3000, err => {
+    server.listen(3000, err => {
       if (err) throw err;
-      console.log(`> Ready on ${process.env.PORT}`);
+      console.log(`> Server started`);
     });
   })
   .catch(ex => {

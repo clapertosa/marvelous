@@ -47,26 +47,29 @@ const Character = props => {
               />
               <meta
                 property="og:image"
-                content={`${character.thumbnail.path}/standard_large.${
-                  character.thumbnail.extension
-                }`}
+                content={`${character.thumbnail.path.replace(
+                  "http://",
+                  "https://"
+                )}/standard_large.${character.thumbnail.extension}`}
               />
             </Head>
             <div className={styles.wrapper}>
               <div
                 className={styles["background-image-container"]}
                 style={{
-                  backgroundImage: `url('${
-                    character.thumbnail.path
-                  }/background.${character.thumbnail.extension}')`
+                  backgroundImage: `url('${character.thumbnail.path.replace(
+                    "http://",
+                    "https://"
+                  )}/background.${character.thumbnail.extension}')`
                 }}
               />
               <div className={styles["grid-container"]}>
                 <div className={styles.poster}>
                   <Poster
-                    image={`${character.thumbnail.path}.${
-                      character.thumbnail.extension
-                    }`}
+                    image={`${character.thumbnail.path.replace(
+                      "http://",
+                      "https://"
+                    )}.${character.thumbnail.extension}`}
                   />
                 </div>
                 <div className={styles.info}>
@@ -92,7 +95,10 @@ const Character = props => {
                         url="comic"
                         id={comic.id}
                         title={comic.name}
-                        image={comic.thumbnail.path}
+                        image={comic.thumbnail.path.replace(
+                          "http://",
+                          "https://"
+                        )}
                         imageExtension={comic.thumbnail.extension}
                       />
                     ))}

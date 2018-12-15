@@ -56,7 +56,10 @@ const Home = () => {
                         url="comic"
                         id={comic.id}
                         title={comic.title}
-                        image={comic.thumbnail.path}
+                        image={comic.thumbnail.path.replace(
+                          "http://",
+                          "https://"
+                        )}
                         imageExtension={comic.thumbnail.extension}
                       />
                     ))}
@@ -77,7 +80,10 @@ const Home = () => {
                         url="comic"
                         id={comic.id}
                         title={comic.title}
-                        image={comic.thumbnail.path}
+                        image={comic.thumbnail.path.replace(
+                          "http://",
+                          "https://"
+                        )}
                         imageExtension={comic.thumbnail.extension}
                       />
                     ))}

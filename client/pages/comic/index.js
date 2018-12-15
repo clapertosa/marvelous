@@ -85,26 +85,29 @@ const Comic = props => {
               />
               <meta
                 property="og:image"
-                content={`${comic.thumbnail.path}/standard_large.${
-                  comic.thumbnail.extension
-                }`}
+                content={`${comic.thumbnail.path.replace(
+                  "http://",
+                  "https://"
+                )}/standard_large.${comic.thumbnail.extension}`}
               />
             </Head>
             <div className={styles.wrapper}>
               <div
                 className={styles["background-image-container"]}
                 style={{
-                  backgroundImage: `url('${comic.thumbnail.path}/background.${
-                    comic.thumbnail.extension
-                  }')`
+                  backgroundImage: `url('${comic.thumbnail.path.replace(
+                    "http://",
+                    "https://"
+                  )}/background.${comic.thumbnail.extension}')`
                 }}
               />
               <div className={styles["grid-container"]}>
                 <div className={styles.cover}>
                   <Cover
-                    image={`${comic.thumbnail.path}/clean.${
-                      comic.thumbnail.extension
-                    }`}
+                    image={`${comic.thumbnail.path.replace(
+                      "http://",
+                      "https://"
+                    )}/clean.${comic.thumbnail.extension}`}
                   />
                 </div>
                 <div className={styles.info}>
@@ -136,7 +139,10 @@ const Comic = props => {
                         url="character"
                         id={character.id}
                         title={character.name}
-                        image={character.thumbnail.path}
+                        image={character.thumbnail.path.replace(
+                          "http://",
+                          "https://"
+                        )}
                         imageExtension={character.thumbnail.extension}
                       />
                     ))}
