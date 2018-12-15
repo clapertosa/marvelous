@@ -1,0 +1,80 @@
+@import "../../../../static/styles/_variables";
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "avatar comment";
+  grid-column-gap: 20px;
+  margin: 10px;
+  background-color: #272727;
+  padding: 10px;
+}
+
+.avatar {
+  grid-area: avatar;
+  width: 48px;
+  height: 48px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.comment {
+  display: grid;
+  grid-template-columns: 1auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "comment-data comment-data comment-data" "author author author" "edit edit edit";
+  grid-row-gap: 15px;
+  grid-area: comment;
+  color: white;
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.comment-data {
+  grid-area: comment-data;
+  font-size: 1.2rem;
+  max-height: 100px;
+  overflow: auto;
+}
+
+.author {
+  grid-area: author;
+  display: flex;
+  align-items: center;
+}
+
+.edit {
+  grid-area: edit;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button {
+    margin: auto 2px auto 2px;
+    padding: 0;
+  }
+
+  i {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+  .comment {
+    grid-template-columns: 1auto 1auto 1auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "comment-data comment-data comment-data" "author author edit";
+  }
+
+  .edit {
+    button {
+      margin: auto 10px auto 10px;
+    }
+  }
+}

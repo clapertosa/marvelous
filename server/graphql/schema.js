@@ -36,6 +36,30 @@ module.exports = buildSchema(`
     avatar: String
   }
 
+  # Comments
+  type Comment {
+    id: ID!
+    userId: ID!
+    user: CommentUser
+    category: String!
+    categoryId: ID!
+    body: String!
+    created_at: String!
+    updated_at: String!
+  }
+
+  type CommentUser {
+    id: ID!
+    name: String!
+    avatar: String
+  }
+
+  input CommentInputData {
+    body: String!
+    category: String!
+    categoryId: ID!
+  }
+
   # API generic types
     type Url {
     type: String!
@@ -104,6 +128,7 @@ module.exports = buildSchema(`
     character(id: ID!): Character
     searchComic(query: String!): [Comic]
     searchCharacter(query: String!): [Character]
+    comments(categoryId: ID! category: String!): [Comment]
   }
 
   # Root Mutation
@@ -118,6 +143,9 @@ module.exports = buildSchema(`
     activateUser(token: String!): Boolean!,
     resetPassword(email: String!): Boolean!,
     newPassword(token: String! password: String! passwordConfirm: String!): Boolean!
+    createComment(commentInput: CommentInputData!): Comment!
+    editComment(id: ID! userId: ID! categoryId: ID! category: String! body: String!): Comment
+    deleteComment(id: ID! userId: ID! categoryId: ID! category: String! body: String!): Boolean
   }
 
   # Schema Config

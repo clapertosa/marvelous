@@ -146,7 +146,7 @@ module.exports = {
       email: res[0].email,
       avatar: res[0].avatar,
       activated: res[0].activated,
-      created_at: res[0].created_at
+      created_at: res[0].created_at.toISOString()
     };
   },
   changeAvatar: async ({ avatar }, { req }) => {
@@ -524,5 +524,173 @@ module.exports = {
       }
     });
     return res.data.data.results;
+  },
+  createComment: async (
+    { commentInput: { body, category, categoryId } },
+    { req }
+  ) => {
+    if (!req.session.isLoggedIn) {
+      return null;
+    }
+
+    const isUserActivated = await knex("users")
+      .first()
+      .where({ id: req.session.user.id })
+      .select("activated");
+
+    if (!isUserActivated.activated) {
+      const error = new Error("You must activate your account");
+      throw error;
+    }
+
+    const errors = [];
+
+    if (validator.isEmpty(body)) {
+      errors.push({ message: "Comment is required" });
+    }
+
+    if (errors.length > 0) {
+      const error = new Error("Invalid input");
+      error.code = 422;
+      error.data = errors;
+      throw error;
+    }
+
+    const res = await knex("comments").insert(
+      {
+        user_id: req.session.user.id,
+        category,
+        category_id: categoryId,
+        body,
+        user_ip:
+          (req.headers["x-forwarded-for"] || "").split(",").pop() ||
+          req.connection.remoteAddress ||
+          req.socket.remoteAddress ||
+          req.connection.socket.remoteAddress
+      },
+      [
+        "id",
+        "user_id",
+        "category",
+        "category_id",
+        "body",
+        "created_at",
+        "updated_at"
+      ]
+    );
+
+    return {
+      id: res[0].id,
+      userId: res[0].user_id,
+      category: res[0].category,
+      categoryId: res[0].category_id,
+      body: res[0].body,
+      created_at: res[0].created_at.toISOString(),
+      updated_at: res[0].updated_at.toISOString()
+    };
+  },
+  comments: async ({ categoryId, category }, { req }) => {
+    const res = await knex("comments")
+      .where({ category_id: categoryId, category })
+      .join("users", "users.id", "=", "comments.user_id")
+      .select(
+        "comments.id",
+        "body",
+        "comments.created_at",
+        "comments.updated_at",
+        "comments.user_id",
+        "name",
+        "avatar"
+      )
+      .orderBy("comments.created_at", "asc");
+
+    if (res.length <= 0) {
+      return null;
+    }
+
+    const comments = [];
+    res.map(item => {
+      comments.push({
+        id: item.id,
+        userId: item.user_id,
+        user: { id: item.user_id, name: item.name, avatar: item.avatar },
+        category,
+        categoryId,
+        body: item.body,
+        created_at: item.created_at.toISOString(),
+        updated_at: item.updated_at.toISOString()
+      });
+    });
+    return comments;
+  },
+  editComment: async ({ id, userId, categoryId, category, body }, { req }) => {
+    if (!req.session.isLoggedIn) {
+      return null;
+    }
+
+    if (req.session.user.id.toString() !== userId) {
+      throw new Error("Unauthorized");
+    }
+
+    const commentExists = await knex("comments")
+      .first()
+      .where({ id, user_id: userId, category_id: categoryId, category });
+
+    if (!commentExists) {
+      throw new Error("Comment doesn't exists");
+    }
+
+    const errors = [];
+
+    if (validator.isEmpty(body)) {
+      errors.push({ message: "Comment body is required" });
+    }
+
+    if (body.trim().length > 140) {
+      errors.push({ message: "Max comment body length is 140" });
+    }
+
+    if (errors.length > 0) {
+      const error = new Error("Invalid input");
+      error.code = 422;
+      error.data = errors;
+      throw error;
+    }
+
+    const res = await knex("comments")
+      .where({ id })
+      .update({ body: body.trim(), updated_at: new Date() }, "*");
+
+    const comment = {
+      ...res[0],
+      userId: res[0].user_id,
+      categoryId: res[0].category_id
+    };
+
+    return comment;
+  },
+  deleteComment: async (
+    { id, userId, categoryId, category, body },
+    { req }
+  ) => {
+    if (!req.session.isLoggedIn) {
+      return null;
+    }
+
+    if (req.session.user.id.toString() !== userId) {
+      throw new Error("Unauthorized");
+    }
+
+    const res = await knex("comments")
+      .where({
+        id,
+        user_id: userId,
+        category_id: categoryId,
+        category,
+        body
+      })
+      .del();
+
+    return true;
   }
 };

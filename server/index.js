@@ -5,7 +5,6 @@ const helmet = require("helmet");
 const session = require("express-session");
 const redis = require("redis");
 const RedisStore = require("connect-redis")(session);
-const authMiddleware = require("./middleware/auth");
 const graphqlHTTP = require("express-graphql");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolver");
@@ -55,9 +54,6 @@ app.use(
 // Redis messages on connect/error
 client.on("connect", () => console.log("Connected to Redis database"));
 client.on("error", () => console.log("Can't connect to Redis database"));
-
-// TODO: Auth Middleware to configure
-app.use(authMiddleware);
 
 // Graphql configuration
 app.use("/graphql", (req, res) => {

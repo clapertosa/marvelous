@@ -1,0 +1,37 @@
+@import "../../static/styles/_variables";
+
+.container {
+  width: 90%;
+  margin: auto auto 20px auto;
+  padding: 30px;
+  background-color: rgba(8, 8, 8, 0.384);
+  padding: 10px;
+}
+
+.title {
+  font-size: 2rem;
+  color: red;
+  text-shadow: 3px 3px 3px black;
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1auto 1auto;
+  grid-template-areas: "comment-input" "comments";
+}
+
+.comment-input {
+  grid-area: comment-input;
+}
+
+.comments {
+  grid-area: comments;
+}
+
+@media (min-width: $mediaQueryMinWidth) {
+  .title {
+    font-size: 3rem;
+  }
+}
