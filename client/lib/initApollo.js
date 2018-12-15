@@ -11,10 +11,7 @@ if (!process.browser) {
 
 function create(initialState, { getToken, headers }) {
   const httpLink = new HttpLink({
-    uri:
-      process.env.NODE_ENV === "production"
-        ? `${process.env.SERVER_URL}/graphql`
-        : "http://localhost:8080/graphql",
+    uri: process.env.SERVER_URL || "http://localhost:8080/graphql",
     credentials: "include",
     headers: { cookie: headers ? headers.cookie : null }
   });
