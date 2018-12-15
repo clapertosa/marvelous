@@ -13,6 +13,11 @@ const keys = require("./config/keys");
 
 const PORT = process.env.PORT || 8080;
 
+// Trust first proxy if in production
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1);
+}
+
 // Cors configuration
 app.use(
   cors({
@@ -52,7 +57,6 @@ app.use(
     saveUninitialized: false,
     secret: keys.SESSION,
     unset: "destroy",
-    proxy: true,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
