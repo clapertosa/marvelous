@@ -58,10 +58,6 @@ app.use(
     secret: keys.SESSION,
     unset: "destroy",
     cookie: {
-      domain:
-        process.env.NODE_ENV === "production"
-          ? ".marvelous.now.sh"
-          : "localhost",
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000
