@@ -41,17 +41,21 @@ const Character = props => {
           <>
             <Head>
               <title>{`Marvelous 🚀 | ${character.name}`}</title>
+              <meta property="og:title" content={`${character.name}`} />
               <meta
-                property="og:title"
-                content={`Marvelous 🚀 | ${character.name}`}
-              />
-              <meta
-                property="og:image"
+                property="og:image:secure_url"
+                itemprop="image"
                 content={`${character.thumbnail.path.replace(
                   "http://",
                   "https://"
-                )}/standard_large.${character.thumbnail.extension}`}
+                )}/standard_xlarge.${character.thumbnail.extension}`}
               />
+              {character.description ? (
+                <meta
+                  property="og:description"
+                  content={character.description}
+                />
+              ) : null}
             </Head>
             <div className={styles.wrapper}>
               <div

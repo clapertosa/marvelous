@@ -1,3 +1,4 @@
+import Head from "next/head";
 import gql from "graphql-tag";
 import Message from "../../../components/Message/Message";
 import LoginForm from "../../../components/Form/LoginForm/LoginForm";
@@ -11,18 +12,23 @@ const ACTIVATE_USER_MUTATION = gql`
 
 const Validate = ({ error, activated }) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.message}>
-        {activated ? (
-          <>
-            <Message success="Your Account has been successfully activated. Please login now!" />
-            <LoginForm />
-          </>
-        ) : (
-          <Message error={error} />
-        )}
+    <>
+      <Head>
+        <title>Marvelous 🚀 | Account validation</title>
+      </Head>
+      <div className={styles.container}>
+        <div className={styles.message}>
+          {activated ? (
+            <>
+              <Message success="Your Account has been successfully activated. Please login now!" />
+              <LoginForm />
+            </>
+          ) : (
+            <Message error={error} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

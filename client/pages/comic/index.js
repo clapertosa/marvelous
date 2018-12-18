@@ -79,17 +79,18 @@ const Comic = props => {
           <>
             <Head>
               <title>{`Marvelous 🚀 | ${comic.title}`}</title>
+              <meta property="og:title" content={`${comic.title}`} />
               <meta
-                property="og:title"
-                content={`Marvelous 🚀 | ${comic.title}`}
-              />
-              <meta
-                property="og:image"
+                property="og:image:secure_url"
+                itemprop="image"
                 content={`${comic.thumbnail.path.replace(
                   "http://",
                   "https://"
-                )}/standard_large.${comic.thumbnail.extension}`}
+                )}/standard_xlarge.${comic.thumbnail.extension}`}
               />
+              {comic.description ? (
+                <meta property="og:description" content={comic.description} />
+              ) : null}
             </Head>
             <div className={styles.wrapper}>
               <div

@@ -15,8 +15,22 @@ export default class MyDocument extends Document {
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
-          <meta property="og:title" content="Marvelous 🚀" />
-          <meta property="og:image" content="../static/backgrounds/2.jpg" />
+          <meta property="og:site_name" content="Marvelous 🚀" />
+          <meta property="og:title" content="🕸 Marvelous 🚀" />
+          <meta
+            property="og:description"
+            content="Check latest Comics and Heroes in the Marvel Universe"
+          />
+          <meta
+            property="og:url"
+            content="https://marvelous-webapp.herokuapp.com"
+          />
+          <meta
+            property="og:image:secure_url"
+            itemprop="image"
+            content="https://marvelous-webapp.herokuapp.com/static/backgrounds/2.jpg"
+          />
+          <meta property="og:type" content="website" />
           <link
             rel="shortcut icon"
             href="/static/favicon.ico"

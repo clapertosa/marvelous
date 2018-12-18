@@ -1,3 +1,4 @@
+import Head from "next/head";
 import User from "../../hoc/User/User";
 import redirect from "../../lib/redirect";
 import checkLoggedIn from "../../lib/checkLoggedIn";
@@ -11,6 +12,9 @@ const Dashboard = () => {
       <User>
         {({ data: { currentUser }, error, loading }) => (
           <div className={styles["grid-container"]}>
+            <Head>
+              <title>Marvelous 🚀 | {currentUser.name} Dashboard</title>
+            </Head>
             <div className={styles["form-container"]}>
               <div className={styles["avatar"]}>
                 <AvatarForm />

@@ -1,11 +1,17 @@
+import Head from "next/head";
 import PasswordResetForm from "../../../components/Form/PasswordResetForm/PasswordResetForm";
 import styles from "./index.scss";
 
 const PasswordReset = () => {
   return (
-    <div className={styles.wrapper}>
-      <PasswordResetForm />
-    </div>
+    <>
+      <Head>
+        <title>Marvelous 🚀 | Password Reset</title>
+      </Head>
+      <div className={styles.wrapper}>
+        <PasswordResetForm />
+      </div>
+    </>
   );
 };
 
