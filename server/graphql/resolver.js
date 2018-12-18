@@ -169,7 +169,7 @@ module.exports = {
 
     const res = await knex("users")
       .where({ id: req.session.user.id })
-      .update({ avatar });
+      .update({ avatar, updated_at: new Date(Date.now()) });
 
     req.session.user.avatar = avatar;
     return "Avatar changed";
@@ -194,7 +194,7 @@ module.exports = {
 
     const res = await knex("users")
       .where({ id: req.session.user.id })
-      .update({ name }, ["name"]);
+      .update({ name, updated_at: new Date(Date.now()) }, ["name"]);
 
     req.session.user.name = res[0].name;
     return res[0].name;
@@ -242,7 +242,13 @@ module.exports = {
     const res = await knex("users")
       .first()
       .where({ id: req.session.user.id })
-      .update({ email: validator.normalizeEmail(email) }, ["email"]);
+      .update(
+        {
+          email: validator.normalizeEmail(email),
+          updated_at: new Date(Date.now())
+        },
+        ["email"]
+      );
 
     req.session.user.email = res[0].email;
     return res[0].email;
@@ -302,7 +308,7 @@ module.exports = {
 
     await knex("users")
       .where({ id: req.session.user.id })
-      .update({ password: newPassword });
+      .update({ password: newPassword, updated_at: new Date(Date.now()) });
 
     return "Password changed";
   },
