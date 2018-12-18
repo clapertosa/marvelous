@@ -2,7 +2,7 @@ const axios = require("axios");
 const crypto = require("crypto");
 const keys = require("./config/keys");
 
-const timestamp = new Date().getTime();
+const timestamp = new Date().getTime().toString();
 
 const instance = axios.create({
   baseURL: "https://gateway.marvel.com/v1/public",
