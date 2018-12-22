@@ -35,7 +35,7 @@ class LoginForm extends Component {
           refetchQueries={[{ query: CURRENT_USER_QUERY }]}
         >
           {(login, { error, data, loading }) => {
-            if (data) Router.push("/");
+            if (data && process.env.NODE_ENV !== "test") Router.push("/");
             return (
               <>
                 {error ? <Message error={error} /> : null}
@@ -78,7 +78,10 @@ class LoginForm extends Component {
                     </Button>
                   </div>
                   <div className={styles["forgot-password"]}>
-                    <Link href="/login/password-reset" prefetch>
+                    <Link
+                      href="/login/password-reset"
+                      prefetch={process.env.NODE_ENV !== "test"}
+                    >
                       <a>Forgot your password?</a>
                     </Link>
                   </div>
@@ -92,4 +95,5 @@ class LoginForm extends Component {
   }
 }
 
+export { LOGIN_MUTATION };
 export default LoginForm;

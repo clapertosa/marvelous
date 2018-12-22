@@ -51,6 +51,7 @@ const Comic = props => {
   return (
     <Query query={COMIC_QUERY} variables={{ id: props.id }}>
       {({ data: { comic }, error, loading }) => {
+        if (!comic) return null;
         if (loading)
           return <Spinner centered spinnerWidth={300} spinnerHeight={300} />;
         const release = comic.dates.filter(
@@ -165,4 +166,5 @@ Comic.getInitialProps = ({ query, pathname }) => {
   return { id: query.id, category: pathname.substring(1) };
 };
 
+export { COMIC_QUERY };
 export default Comic;

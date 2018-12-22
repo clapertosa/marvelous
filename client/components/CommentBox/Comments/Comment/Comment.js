@@ -147,7 +147,7 @@ class Comment extends Component {
           </div>
           <User>
             {({ data: { currentUser }, error, loading }) => {
-              if (currentUser.userId === this.props.user.id)
+              if (currentUser && currentUser.userId === this.props.user.id)
                 return (
                   <>
                     <textarea

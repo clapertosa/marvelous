@@ -35,6 +35,7 @@ const Character = props => {
   return (
     <Query query={CHARACTER_QUERY} variables={{ id: props.id }}>
       {({ data: { character }, error, loading }) => {
+        if (!character) return null;
         if (loading)
           return <Spinner centered spinnerWidth={300} spinnerHeight={300} />;
         return (
@@ -124,4 +125,5 @@ Character.getInitialProps = ({ query, pathname }) => {
   return { id: query.id, category: pathname.substring(1) };
 };
 
+export { CHARACTER_QUERY };
 export default Character;

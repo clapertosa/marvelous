@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card matches the snapshot 1`] = `
+<div
+  className=" "
+>
+  <Link
+    as="/undefined/undefined"
+    href="/undefined?id=undefined"
+  >
+    <a>
+      <div>
+        <img
+          alt="Beauty and the Beast thumbnail"
+          src="/img/image/portrait_uncanny.jpg"
+        />
+      </div>
+      <div>
+        <div>
+          Beauty and the Beast
+        </div>
+      </div>
+    </a>
+  </Link>
+</div>
+`;
+
+exports[`Card matches the snapshot 2`] = `
+<div
+  className=" "
+>
+  <Link
+    as="/undefined/undefined"
+    href="/undefined?id=undefined"
+  >
+    <a>
+      <div>
+        <img
+          alt="Beauty and the Best thumbnail"
+          src="/img/image/portrait_uncanny.jpg"
+        />
+      </div>
+      <div>
+        <div>
+          Beauty and the Best
+        </div>
+      </div>
+    </a>
+  </Link>
+</div>
+`;
