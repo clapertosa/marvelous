@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  flex-wrap: wrap;
+}
+
+.message {
+  text-align: center;
+}
+
+.back {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  a {
+    color: red;
+    text-decoration: underline;
+
+    &:visited {
+      color: red;
+    }
+  }
+}

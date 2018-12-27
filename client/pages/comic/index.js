@@ -7,6 +7,7 @@ import WideCardsContainer from "../../components/WideCardsContainer/WideCardsCon
 import Card from "../../components/Card/Card";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import CommentBox from "../../components/CommentBox/CommentBox";
+import NotFound from "../../components/NotFound/NotFound";
 import styles from "./index.scss";
 
 const COMIC_QUERY = gql`
@@ -50,9 +51,11 @@ const COMIC_QUERY = gql`
 const Comic = props => {
   return (
     <Query query={COMIC_QUERY} variables={{ id: props.id }}>
-      {({ data: { comic }, error, loading }) => {
-        if (loading || !comic)
+      {({ data, error, loading }) => {
+        if (loading)
           return <Spinner centered spinnerWidth={300} spinnerHeight={300} />;
+        if (!loading && error) return <NotFound />;
+        const comic = data.comic;
         const release = comic.dates.filter(
           date => date.type === "onsaleDate"
         )[0];

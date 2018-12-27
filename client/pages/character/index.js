@@ -7,6 +7,7 @@ import WideCardsContainer from "../../components/WideCardsContainer/WideCardsCon
 import Card from "../../components/Card/Card";
 import CommentBox from "../../components/CommentBox/CommentBox";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import NotFound from "../../components/NotFound/NotFound";
 import styles from "./index.scss";
 
 const CHARACTER_QUERY = gql`
@@ -34,9 +35,11 @@ const CHARACTER_QUERY = gql`
 const Character = props => {
   return (
     <Query query={CHARACTER_QUERY} variables={{ id: props.id }}>
-      {({ data: { character }, error, loading }) => {
-        if (loading || !character)
+      {({ data, error, loading }) => {
+        if (loading)
           return <Spinner centered spinnerWidth={300} spinnerHeight={300} />;
+        if (!loading && error) return <NotFound />;
+        const character = data.character;
         return (
           <>
             <Head>
