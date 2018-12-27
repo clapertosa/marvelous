@@ -27,7 +27,7 @@ export default class MyDocument extends Document {
           />
           <meta
             property="og:image:secure_url"
-            itemprop="image"
+            itemProp="image"
             content="https://marvelous-webapp.herokuapp.com/static/backgrounds/2.jpg"
           />
           <meta property="og:type" content="website" />

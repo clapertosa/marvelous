@@ -35,8 +35,7 @@ const Character = props => {
   return (
     <Query query={CHARACTER_QUERY} variables={{ id: props.id }}>
       {({ data: { character }, error, loading }) => {
-        if (!character) return null;
-        if (loading)
+        if (loading || !character)
           return <Spinner centered spinnerWidth={300} spinnerHeight={300} />;
         return (
           <>
@@ -45,7 +44,7 @@ const Character = props => {
               <meta property="og:title" content={`${character.name}`} />
               <meta
                 property="og:image:secure_url"
-                itemprop="image"
+                itemProp="image"
                 content={`${character.thumbnail.path.replace(
                   "http://",
                   "https://"

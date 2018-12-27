@@ -51,8 +51,7 @@ const Comic = props => {
   return (
     <Query query={COMIC_QUERY} variables={{ id: props.id }}>
       {({ data: { comic }, error, loading }) => {
-        if (!comic) return null;
-        if (loading)
+        if (loading || !comic)
           return <Spinner centered spinnerWidth={300} spinnerHeight={300} />;
         const release = comic.dates.filter(
           date => date.type === "onsaleDate"
@@ -83,7 +82,7 @@ const Comic = props => {
               <meta property="og:title" content={`${comic.title}`} />
               <meta
                 property="og:image:secure_url"
-                itemprop="image"
+                itemProp="image"
                 content={`${comic.thumbnail.path.replace(
                   "http://",
                   "https://"
