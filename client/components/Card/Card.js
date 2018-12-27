@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "./Card.scss";
 import swiperStyles from "react-id-swiper/src/styles/scss/swiper.scss";
+import styles from "./Card.scss";
 
 const Card = props => {
   return (

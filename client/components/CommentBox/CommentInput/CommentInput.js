@@ -3,8 +3,8 @@ import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import { COMMENTS_QUERY } from "../Comments/Comments";
 import User from "../../../hoc/User/User";
-import styles from "./CommentInput.scss";
 import Spinner from "../../UI/Spinner/Spinner";
+import styles from "./CommentInput.scss";
 
 const CREATE_COMMENT_MUTATION = gql`
   mutation CREATE_COMMENT_MUTATION(

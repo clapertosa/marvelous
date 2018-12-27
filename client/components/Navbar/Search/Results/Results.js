@@ -1,5 +1,5 @@
-import styles from "./Results.scss";
 import ResultItem from "./ResultItem/ResultItem";
+import styles from "./Results.scss";
 
 const Results = ({ data }) => {
   if (!data) return null;

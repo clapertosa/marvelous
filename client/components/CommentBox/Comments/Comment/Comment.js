@@ -4,8 +4,8 @@ import gql from "graphql-tag";
 import moment from "moment";
 import { COMMENTS_QUERY } from "../Comments";
 import User from "../../../../hoc/User/User";
-import styles from "./Comment.scss";
 import Spinner from "../../../UI/Spinner/Spinner";
+import styles from "./Comment.scss";
 
 const EDIT_COMMENT_MUTATION = gql`
   mutation EDIT_COMMENT_MUTATION(

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import styles from "./NavbarDropdownItem.scss";
 import NavbarItem from "../NavbarItem/NavbarItem";
+import styles from "./NavbarDropdownItem.scss";
 
 class NavbarDropdownItem extends Component {
   state = {

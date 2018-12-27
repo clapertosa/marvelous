@@ -4,9 +4,9 @@ import DrawerToggle from "./SideDrawer/DrawerToggle/DrawerToggle";
 import NavbarItems from "./NavbarItems/NavbarItems";
 import SideDrawer from "./SideDrawer/SideDrawer";
 import Backdrop from "../UI/Backdrop/Backdrop";
-import styles from "./Navbar.scss";
 import Logo from "./Logo/Logo";
 import Search from "./Search/Search";
+import styles from "./Navbar.scss";
 
 class Navbar extends Component {
   componentDidMount() {
