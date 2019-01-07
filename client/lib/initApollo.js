@@ -12,9 +12,9 @@ if (!process.browser) {
 function create(initialState, { getToken, headers }) {
   const httpLink = new HttpLink({
     uri:
-      process.env.NODE_ENV === "production"
-        ? "https://marvelous-webapp.herokuapp.com/graphql"
-        : "http://localhost:3000/graphql",
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/graphql"
+        : "https://marvelous-webapp.herokuapp.com/graphql",
     credentials: "include",
     headers: { cookie: headers ? headers.cookie : null }
   });
