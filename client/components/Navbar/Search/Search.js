@@ -42,9 +42,18 @@ class Search extends Component {
   };
 
   showSearchToggle = () => {
-    this.setState(prevState => {
-      return { showSearch: !prevState.showSearch };
-    });
+    this.setState(
+      prevState => {
+        return { showSearch: !prevState.showSearch };
+      },
+      () => {
+        this.state.showSearch ? this.changeFocus() : null;
+      }
+    );
+  };
+
+  changeFocus = () => {
+    document.querySelector("#result-search").focus();
   };
 
   onChangeInput = e => {
@@ -102,6 +111,7 @@ class Search extends Component {
                 }}
               >
                 <input
+                  id="result-search"
                   type="text"
                   autoComplete="off"
                   autoFocus={true}
