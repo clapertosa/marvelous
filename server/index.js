@@ -35,7 +35,7 @@ app
     });
 
     // Serve public folder to root
-    server.use(express.static(__dirname + "/public"));
+    // server.use(express.static(__dirname + "/public"));
 
     // Helmet configuration
     server.use(helmet());
