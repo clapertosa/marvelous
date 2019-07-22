@@ -77,7 +77,7 @@ app
         rootValue: graphqlResolver,
         graphiql: process.env.NODE_ENV !== "production",
         context: { req, res },
-        formatError: err => {
+        customFormatErrorFn: err => {
           if (!err.originalError) {
             return err;
           }
