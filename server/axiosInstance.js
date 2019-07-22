@@ -1,4 +1,4 @@
-const axios = require("axios");
+const axios = require("axios").default;
 const crypto = require("crypto");
 const keys = require("./config/keys");
 
