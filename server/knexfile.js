@@ -6,7 +6,7 @@ module.exports = {
     connection: {
       database: "marvelous",
       user: "postgres",
-      password: "password"
+      password: "postgres"
     }
   },
 
