@@ -2,4 +2,3 @@ node_modules
 .next
 dev.js
 dump.rdb
-yarn.lock

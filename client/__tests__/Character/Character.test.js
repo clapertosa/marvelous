@@ -95,11 +95,14 @@ describe("Character", () => {
   it("should give me Character data", async () => {
     const wrapper = mount(
       <MockedProvider mocks={mocks}>
-        <Character id={27462} categoryId={27462} category="character" />
+        <Character
+          character={mocks[0].result.data.character}
+          id={27462}
+          category="character"
+        />
       </MockedProvider>
     );
 
-    await new Promise(resolve => setTimeout(resolve, 0));
     wrapper.update();
     expect(wrapper.contains("Dr. Strange")).toBe(true);
   });
