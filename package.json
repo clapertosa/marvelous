@@ -52,7 +52,7 @@
     "react-dom": "^16.8.6",
     "react-id-swiper": "^1.6.8",
     "redis": "^2.8.0",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
