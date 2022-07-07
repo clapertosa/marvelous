@@ -42,7 +42,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.5",
     "lodash.debounce": "^4.0.8",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "next": "^9.0.2",
     "next-images": "^1.1.2",
     "node-sass": "^4.12.0",
