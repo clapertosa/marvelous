@@ -39,7 +39,7 @@
     "graphql-tag": "^2.10.1",
     "helmet": "^3.19.0",
     "isomorphic-unfetch": "^3.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "knex": "^0.19.5",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.24.0",
